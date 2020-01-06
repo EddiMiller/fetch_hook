@@ -3,6 +3,7 @@ import './App.css';
 import { fetchData } from './Api/Api';
 import { getRandomNumber, capitalize } from './Helper/Ulitity';
 import Abilities from './Helper/Abilities';
+import './main.scss';
 
 const POKEAPI = 'https://pokeapi.co/api/v2/';
 
@@ -28,18 +29,26 @@ const App = () => {
 
   return (
     <Fragment>
-      <h1>{pokemon.name}</h1>
-      <img src={pokemon.img} alt={pokemon.name}/>
-      <h2>Fähigkeiten</h2>
-      {abilities.map((ability, index) => {
-        return (
-          <div key={index}>
-            <h3>{ability.name}</h3>
-            <p>{ability.short_effect}</p>
+      <section class="poke-card">
+        <h1>{pokemon.name}</h1>
+        <div class="poke-card_container">
+          <div class="poke-card_container_left">
+            <img class="poke-card_container_left_image" src={pokemon.img} alt={pokemon.name}/>
           </div>
-        )
-      })}
-      <button onClick={() => {onClickHandler()}}>new Pokemon</button>
+          <div class="poke-card_container_right">
+            <h2>Fähigkeiten</h2>
+            {abilities.map((ability, index) => {
+              return (
+                <div class="text poke-card_container_right_abillity" key={index}>
+                  <h3>{ability.name}</h3>
+                  <p>{ability.short_effect}</p>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+        <button class="btn-basic" onClick={() => {onClickHandler()}}>new Pokemon</button>
+      </section>
     </Fragment>
   );
 }
